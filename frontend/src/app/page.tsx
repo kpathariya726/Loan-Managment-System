@@ -250,7 +250,8 @@ export default function Home() {
       const json = await res.json();
 
       if (!json.success) {
-        throw new Error(json.error || 'Authentication failed.');
+        const errorMsg = json.details ? `${json.error} (${json.details})` : (json.error || 'Authentication failed.');
+        throw new Error(errorMsg);
       }
 
       // Save session credentials
