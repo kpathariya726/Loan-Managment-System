@@ -211,9 +211,9 @@ export default function Home() {
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsActionLoading(true);
+    const endpoint = isLoginMode ? 'login' : 'signup';
 
     try {
-      const endpoint = isLoginMode ? 'login' : 'signup';
       const payload = isLoginMode
         ? { email: authForm.email, password: authForm.password }
         : {
