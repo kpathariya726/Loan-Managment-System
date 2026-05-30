@@ -528,10 +528,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-500 to-indigo-600 flex items-center justify-between p-2 shadow-lg shadow-teal-500/20">
-              <span className="text-xl font-black text-slate-950 tracking-tighter">AG</span>
+              <span className="text-xl font-black text-slate-950 tracking-tighter">CS</span>
             </div>
             <div>
-              <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-teal-400 to-indigo-300 bg-clip-text text-transparent">Antigravity Finance</span>
+              <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-teal-400 to-indigo-300 bg-clip-text text-transparent">CreditSea</span>
               <p className="text-[10px] text-slate-400 font-mono">LOAN MANAGEMENT ENGINE v1.2</p>
             </div>
           </div>
