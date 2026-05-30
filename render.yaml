@@ -1,0 +1,35 @@
+services:
+  # 1. Express Backend Web Service
+  - type: web
+    name: lms-backend-api
+    env: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true # Generates a secure, cryptographically random JWT secret automatically
+      - key: MONGO_URI
+        value: mongodb+srv://admin:LmsAdmin2026@cluster0.mongodb.net/lms_production_db # Fallback/Custom URI
+        # Note: You can also use Render's native MongoDB integrations or link to MongoDB Atlas
+
+  # 2. Next.js Frontend Web Service
+  - type: web
+    name: lms-frontend-client
+    env: node
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          name: lms-backend-api
+          type: web
+          property: host
+        # This dynamically captures the deployed URL of the lms-backend-api and injects it into the Next.js client environment!
