@@ -3,7 +3,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // API Server Address
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:3000/api';
+const getApiBase = () => {
+  let url = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:3000/api';
+  if (url && !url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('/')) {
+    url = `https://${url}`;
+  }
+  if (url && !url.endsWith('/api') && !url.includes('/api/')) {
+    url = url.endsWith('/') ? `${url}api` : `${url}/api`;
+  }
+  return url;
+};
+
+const API_BASE = getApiBase();
 
 // Roles Enum representation
 enum Role {
