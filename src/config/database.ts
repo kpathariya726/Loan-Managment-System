@@ -11,7 +11,7 @@ export const connectDB = async (uri: string = 'mongodb://127.0.0.1:27017/lms_db'
     console.log(`[MongoDB] Connected successfully to the Loan Management Database: ${uri}`);
   } catch (error: any) {
     console.error(`[MongoDB] Connection failed: ${error.message}`);
-    process.exit(1);
+    console.warn(`⚠️ [MongoDB Warning] Express server will continue running, but database operations will fail until MONGO_URI is configured correctly.`);
   }
 };
 
