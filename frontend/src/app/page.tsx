@@ -103,6 +103,7 @@ export default function Home() {
 
   // Hydrate JWT and session state on component load
   useEffect(() => {
+    console.log('[LMS Core] Initialized API_BASE:', API_BASE);
     const savedToken = localStorage.getItem('lms_token');
     const savedRole = localStorage.getItem('lms_role');
     const savedName = localStorage.getItem('lms_name');
@@ -232,6 +233,12 @@ export default function Home() {
         body: JSON.stringify(payload)
       });
 
+      const contentType = res.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await res.text();
+        throw new Error(`Server returned HTML instead of JSON (Status: ${res.status}). Preview: ${text.substring(0, 80)}...`);
+      }
+
       const json = await res.json();
 
       if (!json.success) {
@@ -265,7 +272,7 @@ export default function Home() {
         setCurrentStep(2); // Progress to Identity/Financial stage
       }
     } catch (err: any) {
-      showAlert(err.message, 'error');
+      showAlert(`${err.message} (Attempted URL: ${API_BASE}/auth/${endpoint})`, 'error');
     } finally {
       setIsActionLoading(false);
     }
