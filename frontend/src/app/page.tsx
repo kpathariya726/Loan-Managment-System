@@ -5,6 +5,14 @@ import React, { useState, useEffect, useRef } from 'react';
 // API Server Address
 const getApiBase = () => {
   let url = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:3000/api';
+  url = url.trim();
+
+  // If it's a Render internal hostname (no dots, e.g., "lms-backend-api-kcjh"),
+  // convert it to the external publicly accessible onrender.com domain.
+  if (url && !url.includes('.') && !url.startsWith('/') && url !== 'localhost') {
+    url = `${url}.onrender.com`;
+  }
+
   if (url && !url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('/')) {
     url = `https://${url}`;
   }
