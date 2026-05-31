@@ -1,3 +1,6 @@
+#video link
+https://drive.google.com/file/d/1xCeM7jTi5SK1SUU8xnxozp7xZNGUc_Jz/view?usp=sharing
+
 # 🌊 CreditSea - Enterprise Loan Management System (LMS)
 
 A state-of-the-art, secure, and end-to-end digital lending platform built using **TypeScript**, **Next.js 16 (App Router)**, **Express**, and **MongoDB**. Specially engineered with an automated Business Rules Engine (BRE), a high-precision floating-point safe mathematical lending engine, and strict Role-Based Access Control (RBAC).
